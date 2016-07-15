@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<style>
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+.panel {
+    width: 100%;
+    flex: 1;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    border: 1px solid #FFF;
+    padding: 5px;
+    box-sizing: border-box;
+}
+
+.panel .label {
+    position: absolute;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    border-radius: 0 0 5px 0;
+    background-color: #FFF;
+    color: #333;
+    width: 100px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+}
+
+.panel .canvas {
+    width: 100%;
+    height: 100%;
+}
+
+</style>
+</head>
+<body>
+<div class="panel">
+    <div class="label">WebGL</div>
+    <canvas class="canvas" id="webgl"></canvas>
+</div>
+<div class="panel">
+    <div class="label">canvas2d</div>
+    <canvas class="canvas" id="canvas2d"></canvas>
+</div>
+<div class="panel">
+    <div class="label">css3d</div>
+    <div class="canvas"  id="css3d"></div>
+</div>
+<script src="dist/index.js"></script>
+</body>
+</html>
