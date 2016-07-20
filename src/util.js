@@ -50,13 +50,20 @@ export function glColor2rgba(color) {
 
 export function obj2style(obj) {
     const style = [];
-    for (let name in obj) {
-        let value = obj[name];
-        if (typeof value === 'number') {
-            value += 'px';
+    if (obj instanceof Array) {
+        for (let item of obj) {
+            style.push(obj2style(item));
         }
-        style.push(`${name}:${value}`);
+    } else {
+        for (let name in obj) {
+            let value = obj[name];
+            if (typeof value === 'number') {
+                value += 'px';
+            }
+            style.push(`${name}:${value}`);
+        } 
     }
+
     return style.join(';');
 }
 

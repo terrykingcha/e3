@@ -1,6 +1,7 @@
 import Engine from './engine';
 import getWebGLContext from 'webgl-context';
 import mat4 from 'gl-mat4';
+import decompose from 'mat4-decompose';
 import clearColor from 'gl-clear';
 import initShader from 'gl-shader';
 import initBuffer from 'gl-buffer';
@@ -13,12 +14,14 @@ attribute vec4 aColor;
 
 uniform mat4 uElement;
 uniform mat4 uProjection;
-uniform mat4 uTransform;
 
 varying vec4 vColor;
 
+// invert Y axis against css transform matrix
+mat4 invertY = mat4(1, 0, 0, 0, 0, -1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+
 void main() {
-  gl_Position = uProjection * uElement * (vec4(aPosition, 1.0) * uTransform);
+  gl_Position = uProjection * uElement * vec4(aPosition, 1.0) * invertY;
   vColor = aColor;
 }
 `;
@@ -70,7 +73,7 @@ export default class WebGLEngine extends Engine {
 
         const projectionMatrix = mat4.create();
         const elementMatrix = mat4.create();
-        const {transformMatrix} = el;
+        let {transformMatrix} = el;
 
         mat4.perspective(projectionMatrix, Math.PI / 4, this.viewportWidth / this.viewportHeight, 0.01, 100)
         mat4.identity(elementMatrix, elementMatrix);
@@ -78,12 +81,16 @@ export default class WebGLEngine extends Engine {
         this.basicShader.bind();
         this.basicShader.uniforms.uProjection = projectionMatrix;
         this.basicShader.uniforms.uElement = elementMatrix;
-        this.basicShader.uniforms.uTransform = transformMatrix;
 
-        const vertices = initBuffer(this.gl, 
-            new Float32Array(el.getVertices(projectionMatrix, elementMatrix, this.viewportWidth, this.viewportHeight)));
-        const colors = initBuffer(this.gl, 
-            new Float32Array(el.getColors()));
+        let vertices = el.getVertices(
+            projectionMatrix,
+            elementMatrix,
+            this.viewportWidth,
+            this.viewportHeight
+        );
+        vertices = initBuffer(this.gl, new Float32Array(vertices));
+        let colors = el.getColors();
+        colors = initBuffer(this.gl, new Float32Array(colors));
 
         vertices.bind();
         this.basicShader.attributes.aPosition.pointer();

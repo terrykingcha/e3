@@ -1,54 +1,20 @@
-import {
-    rgba2glColor,
-    deg2rad
-} from './util';
-import WebGLEngine from './webgl';
-import Canvas2DEngine from './canvas2d';
-import CSS3DEngine from './css3d';
+import Render from './render';
 import Rect from './rect';
 import mat4 from 'gl-mat4';
-
-class Render {
-    constructor(element, engine) {
-        const elRect = element.getBoundingClientRect();
-        this.viewportWidth = elRect.width;
-        this.viewportHeight = elRect.height;
-        this.engine = engine;
-
-        engine.attachElement(element);
-        engine.setSize(this.viewportWidth, this.viewportHeight);
-    }
-
-    clearColor(color) {
-        if (typeof color === 'string') {
-            color = rgba2glColor(color)
-        }
-        this.engine.setClearColor(color)
-    }
-
-    draw(el) {
-        this.engine.draw(el);
-    }
-
-    drawRect(options) {
-        const rect = new Rect(options);
-        this.draw(rect);
-        return rect;
-    }
-
-}
+import css2matrix from 'css-transform-to-mat4';
+import interpolate from 'mat4-interpolate';
 
 const webglEl = document.getElementById('webgl');
 const canvas2dEl = document.getElementById('canvas2d');
 const css3dEl = document.getElementById('css3d');
 
 const renders = [
-    new Render(webglEl, new WebGLEngine()),
-    new Render(canvas2dEl, new Canvas2DEngine()),
-    new Render(css3dEl, new CSS3DEngine())
+    new Render(webglEl, 'webgl'),
+    new Render(canvas2dEl, 'canvas'),
+    new Render(css3dEl, 'css')
 ];
 
-let translateX = 80;
+let translateX = 100;
 let rotateZ = 0;
 let lastTime = Date.now();
 function tick() {
@@ -61,30 +27,27 @@ function tick() {
 
 function animation(elapsed) {
     rotateZ += (90 * elapsed) / 1000;
-    
-    const matrix = mat4.create();
-    mat4.identity(matrix, matrix);
-    mat4.rotateZ(matrix, matrix, deg2rad(rotateZ));
-    mat4.translate(matrix, matrix, [translateX, 0, 0]);
 
     renders.forEach(render => {
         const rect = render.rect;
-
-        render.rect.transform(matrix);
-        render.draw(render.rect);
+        render.transform(rect, 
+            `rotateZ(-${rotateZ}deg)`, 
+            `translateX(${translateX}px)`);
+        render.draw(rect);
     });
 }
 
 renders.forEach(render => {
     render.clearColor('#000F');
     
-    const rect = render.drawRect({
+    const rect = new Rect({
         width: 50,
         height: 50,
         position: [-25, 25, 0],
         color: '#FFFF'
     });
     render.rect = rect;
+    render.draw(rect);
 });
 
 tick()

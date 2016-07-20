@@ -4,6 +4,7 @@ import {
 } from './util'
 import Element from './element';
 import mat4 from 'gl-mat4';
+import vec3 from 'gl-vec3';
 import unproject from 'camera-unproject';
 
 export default class Rect extends Element {
@@ -31,7 +32,6 @@ export default class Rect extends Element {
 
     transform(matrix) {
         mat4.copy(this.transformMatrix, matrix);
-        // mat4.multiply(this.transformMatrix, this.transformMatrix, matrix);
     }
 
     getVertices(projView, modelView, width, height) {
@@ -52,6 +52,7 @@ export default class Rect extends Element {
 
         points.forEach(point => {
             const vertex = [];
+            point = vec3.transformMat4([], point, this.transformMatrix);
             const [x, y, z] = translateAxis(point, width, height);
             unproject(vertex, [x, y, 0], viewport, invertProjView);
             vertices = [...vertices, ...vertex];

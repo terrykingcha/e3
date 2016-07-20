@@ -1,10 +1,6 @@
 (function () {
 	'use strict';
 
-	function deg2rad(deg) {
-	    return deg / 180 * Math.PI;
-	}
-
 	function rgba2glColor(rgba) {
 	    if (typeof rgba === 'string') {
 	        if (rgba.length === 5) {
@@ -53,13 +49,41 @@
 
 	function obj2style(obj) {
 	    var style = [];
-	    for (var name in obj) {
-	        var value = obj[name];
-	        if (typeof value === 'number') {
-	            value += 'px';
+	    if (obj instanceof Array) {
+	        var _iteratorNormalCompletion = true;
+	        var _didIteratorError = false;
+	        var _iteratorError = undefined;
+
+	        try {
+	            for (var _iterator = obj[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+	                var item = _step.value;
+
+	                style.push(obj2style(item));
+	            }
+	        } catch (err) {
+	            _didIteratorError = true;
+	            _iteratorError = err;
+	        } finally {
+	            try {
+	                if (!_iteratorNormalCompletion && _iterator.return) {
+	                    _iterator.return();
+	                }
+	            } finally {
+	                if (_didIteratorError) {
+	                    throw _iteratorError;
+	                }
+	            }
 	        }
-	        style.push(name + ':' + value);
+	    } else {
+	        for (var name in obj) {
+	            var value = obj[name];
+	            if (typeof value === 'number') {
+	                value += 'px';
+	            }
+	            style.push(name + ':' + value);
+	        }
 	    }
+
 	    return style.join(';');
 	}
 
@@ -324,10 +348,10 @@
 	};
 	});
 
-	var require$$0$2 = (identity$1 && typeof identity$1 === 'object' && 'default' in identity$1 ? identity$1['default'] : identity$1);
+	var require$$5 = (identity$1 && typeof identity$1 === 'object' && 'default' in identity$1 ? identity$1['default'] : identity$1);
 
 	var lookAt$1 = createCommonjsModule(function (module) {
-	var identity = require$$0$2;
+	var identity = require$$5;
 
 	module.exports = lookAt;
 
@@ -583,7 +607,7 @@
 	};
 	});
 
-	var require$$5 = (frustum$1 && typeof frustum$1 === 'object' && 'default' in frustum$1 ? frustum$1['default'] : frustum$1);
+	var require$$5$1 = (frustum$1 && typeof frustum$1 === 'object' && 'default' in frustum$1 ? frustum$1['default'] : frustum$1);
 
 	var fromQuat$1 = createCommonjsModule(function (module) {
 	module.exports = fromQuat;
@@ -693,7 +717,7 @@
 	};
 	});
 
-	var require$$7 = (fromRotationTranslation$1 && typeof fromRotationTranslation$1 === 'object' && 'default' in fromRotationTranslation$1 ? fromRotationTranslation$1['default'] : fromRotationTranslation$1);
+	var require$$0$2 = (fromRotationTranslation$1 && typeof fromRotationTranslation$1 === 'object' && 'default' in fromRotationTranslation$1 ? fromRotationTranslation$1['default'] : fromRotationTranslation$1);
 
 	var rotateZ$2 = createCommonjsModule(function (module) {
 	module.exports = rotateZ;
@@ -742,7 +766,7 @@
 	};
 	});
 
-	var require$$8 = (rotateZ$2 && typeof rotateZ$2 === 'object' && 'default' in rotateZ$2 ? rotateZ$2['default'] : rotateZ$2);
+	var require$$4$1 = (rotateZ$2 && typeof rotateZ$2 === 'object' && 'default' in rotateZ$2 ? rotateZ$2['default'] : rotateZ$2);
 
 	var rotateY$1 = createCommonjsModule(function (module) {
 	module.exports = rotateY;
@@ -791,7 +815,7 @@
 	};
 	});
 
-	var require$$9 = (rotateY$1 && typeof rotateY$1 === 'object' && 'default' in rotateY$1 ? rotateY$1['default'] : rotateY$1);
+	var require$$5$2 = (rotateY$1 && typeof rotateY$1 === 'object' && 'default' in rotateY$1 ? rotateY$1['default'] : rotateY$1);
 
 	var rotateX$1 = createCommonjsModule(function (module) {
 	module.exports = rotateX;
@@ -840,7 +864,7 @@
 	};
 	});
 
-	var require$$10 = (rotateX$1 && typeof rotateX$1 === 'object' && 'default' in rotateX$1 ? rotateX$1['default'] : rotateX$1);
+	var require$$6$1 = (rotateX$1 && typeof rotateX$1 === 'object' && 'default' in rotateX$1 ? rotateX$1['default'] : rotateX$1);
 
 	var rotate$1 = createCommonjsModule(function (module) {
 	module.exports = rotate;
@@ -909,7 +933,7 @@
 	};
 	});
 
-	var require$$11 = (rotate$1 && typeof rotate$1 === 'object' && 'default' in rotate$1 ? rotate$1['default'] : rotate$1);
+	var require$$3$1 = (rotate$1 && typeof rotate$1 === 'object' && 'default' in rotate$1 ? rotate$1['default'] : rotate$1);
 
 	var scale$1 = createCommonjsModule(function (module) {
 	module.exports = scale;
@@ -945,7 +969,7 @@
 	};
 	});
 
-	var require$$12 = (scale$1 && typeof scale$1 === 'object' && 'default' in scale$1 ? scale$1['default'] : scale$1);
+	var require$$1$1 = (scale$1 && typeof scale$1 === 'object' && 'default' in scale$1 ? scale$1['default'] : scale$1);
 
 	var translate$1 = createCommonjsModule(function (module) {
 	module.exports = translate;
@@ -988,7 +1012,7 @@
 	};
 	});
 
-	var require$$13 = (translate$1 && typeof translate$1 === 'object' && 'default' in translate$1 ? translate$1['default'] : translate$1);
+	var require$$4$2 = (translate$1 && typeof translate$1 === 'object' && 'default' in translate$1 ? translate$1['default'] : translate$1);
 
 	var multiply$1 = createCommonjsModule(function (module) {
 	module.exports = multiply;
@@ -1035,7 +1059,7 @@
 	};
 	});
 
-	var require$$14 = (multiply$1 && typeof multiply$1 === 'object' && 'default' in multiply$1 ? multiply$1['default'] : multiply$1);
+	var require$$3$2 = (multiply$1 && typeof multiply$1 === 'object' && 'default' in multiply$1 ? multiply$1['default'] : multiply$1);
 
 	var determinant$1 = createCommonjsModule(function (module) {
 	module.exports = determinant;
@@ -1070,7 +1094,7 @@
 	};
 	});
 
-	var require$$15 = (determinant$1 && typeof determinant$1 === 'object' && 'default' in determinant$1 ? determinant$1['default'] : determinant$1);
+	var require$$1$2 = (determinant$1 && typeof determinant$1 === 'object' && 'default' in determinant$1 ? determinant$1['default'] : determinant$1);
 
 	var adjoint$1 = createCommonjsModule(function (module) {
 	module.exports = adjoint;
@@ -1168,7 +1192,7 @@
 	};
 	});
 
-	var require$$17 = (invert$1 && typeof invert$1 === 'object' && 'default' in invert$1 ? invert$1['default'] : invert$1);
+	var require$$5$3 = (invert$1 && typeof invert$1 === 'object' && 'default' in invert$1 ? invert$1['default'] : invert$1);
 
 	var transpose$1 = createCommonjsModule(function (module) {
 	module.exports = transpose;
@@ -1222,7 +1246,7 @@
 	};
 	});
 
-	var require$$18 = (transpose$1 && typeof transpose$1 === 'object' && 'default' in transpose$1 ? transpose$1['default'] : transpose$1);
+	var require$$4$3 = (transpose$1 && typeof transpose$1 === 'object' && 'default' in transpose$1 ? transpose$1['default'] : transpose$1);
 
 	var copy$1 = createCommonjsModule(function (module) {
 	module.exports = copy;
@@ -1288,7 +1312,7 @@
 	};
 	});
 
-	var require$$21 = (clone$1 && typeof clone$1 === 'object' && 'default' in clone$1 ? clone$1['default'] : clone$1);
+	var require$$7 = (clone$1 && typeof clone$1 === 'object' && 'default' in clone$1 ? clone$1['default'] : clone$1);
 
 	var create$1 = createCommonjsModule(function (module) {
 	module.exports = create;
@@ -1320,28 +1344,28 @@
 	};
 	});
 
-	var require$$22 = (create$1 && typeof create$1 === 'object' && 'default' in create$1 ? create$1['default'] : create$1);
+	var require$$2$1 = (create$1 && typeof create$1 === 'object' && 'default' in create$1 ? create$1['default'] : create$1);
 
 	var index$2 = createCommonjsModule(function (module) {
 	module.exports = {
-	  create: require$$22
-	  , clone: require$$21
+	  create: require$$2$1
+	  , clone: require$$7
 	  , copy: require$$20
-	  , identity: require$$0$2
-	  , transpose: require$$18
-	  , invert: require$$17
+	  , identity: require$$5
+	  , transpose: require$$4$3
+	  , invert: require$$5$3
 	  , adjoint: require$$16
-	  , determinant: require$$15
-	  , multiply: require$$14
-	  , translate: require$$13
-	  , scale: require$$12
-	  , rotate: require$$11
-	  , rotateX: require$$10
-	  , rotateY: require$$9
-	  , rotateZ: require$$8
-	  , fromRotationTranslation: require$$7
+	  , determinant: require$$1$2
+	  , multiply: require$$3$2
+	  , translate: require$$4$2
+	  , scale: require$$1$1
+	  , rotate: require$$3$1
+	  , rotateX: require$$6$1
+	  , rotateY: require$$5$2
+	  , rotateZ: require$$4$1
+	  , fromRotationTranslation: require$$0$2
 	  , fromQuat: require$$6
-	  , frustum: require$$5
+	  , frustum: require$$5$1
 	  , perspective: require$$4
 	  , perspectiveFromFieldOfView: require$$3
 	  , ortho: require$$2
@@ -1351,6 +1375,293 @@
 	});
 
 	var mat4 = (index$2 && typeof index$2 === 'object' && 'default' in index$2 ? index$2['default'] : index$2);
+
+	var cross = createCommonjsModule(function (module) {
+	module.exports = cross;
+
+	/**
+	 * Computes the cross product of two vec3's
+	 *
+	 * @param {vec3} out the receiving vector
+	 * @param {vec3} a the first operand
+	 * @param {vec3} b the second operand
+	 * @returns {vec3} out
+	 */
+	function cross(out, a, b) {
+	    var ax = a[0], ay = a[1], az = a[2],
+	        bx = b[0], by = b[1], bz = b[2]
+
+	    out[0] = ay * bz - az * by
+	    out[1] = az * bx - ax * bz
+	    out[2] = ax * by - ay * bx
+	    return out
+	}
+	});
+
+	var require$$9 = (cross && typeof cross === 'object' && 'default' in cross ? cross['default'] : cross);
+
+	var dot = createCommonjsModule(function (module) {
+	module.exports = dot;
+
+	/**
+	 * Calculates the dot product of two vec3's
+	 *
+	 * @param {vec3} a the first operand
+	 * @param {vec3} b the second operand
+	 * @returns {Number} dot product of a and b
+	 */
+	function dot(a, b) {
+	    return a[0] * b[0] + a[1] * b[1] + a[2] * b[2]
+	}
+	});
+
+	var require$$0$3 = (dot && typeof dot === 'object' && 'default' in dot ? dot['default'] : dot);
+
+	var normalize = createCommonjsModule(function (module) {
+	module.exports = normalize;
+
+	/**
+	 * Normalize a vec3
+	 *
+	 * @param {vec3} out the receiving vector
+	 * @param {vec3} a vector to normalize
+	 * @returns {vec3} out
+	 */
+	function normalize(out, a) {
+	    var x = a[0],
+	        y = a[1],
+	        z = a[2]
+	    var len = x*x + y*y + z*z
+	    if (len > 0) {
+	        //TODO: evaluate use of glm_invsqrt here?
+	        len = 1 / Math.sqrt(len)
+	        out[0] = a[0] * len
+	        out[1] = a[1] * len
+	        out[2] = a[2] * len
+	    }
+	    return out
+	}
+	});
+
+	var require$$1$3 = (normalize && typeof normalize === 'object' && 'default' in normalize ? normalize['default'] : normalize);
+
+	var length = createCommonjsModule(function (module) {
+	module.exports = length;
+
+	/**
+	 * Calculates the length of a vec3
+	 *
+	 * @param {vec3} a vector to calculate length of
+	 * @returns {Number} length of a
+	 */
+	function length(a) {
+	    var x = a[0],
+	        y = a[1],
+	        z = a[2]
+	    return Math.sqrt(x*x + y*y + z*z)
+	}
+	});
+
+	var require$$15 = (length && typeof length === 'object' && 'default' in length ? length['default'] : length);
+
+	var normalize$1 = createCommonjsModule(function (module) {
+	module.exports = function normalize(out, mat) {
+	    var m44 = mat[15]
+	    // Cannot normalize.
+	    if (m44 === 0) 
+	        return false
+	    var scale = 1 / m44
+	    for (var i=0; i<16; i++)
+	        out[i] = mat[i] * scale
+	    return true
+	}
+	});
+
+	var require$$9$1 = (normalize$1 && typeof normalize$1 === 'object' && 'default' in normalize$1 ? normalize$1['default'] : normalize$1);
+
+	var index$3 = createCommonjsModule(function (module) {
+	/*jshint unused:true*/
+	/*
+	Input:  matrix      ; a 4x4 matrix
+	Output: translation ; a 3 component vector
+	        scale       ; a 3 component vector
+	        skew        ; skew factors XY,XZ,YZ represented as a 3 component vector
+	        perspective ; a 4 component vector
+	        quaternion  ; a 4 component vector
+	Returns false if the matrix cannot be decomposed, true if it can
+
+
+	References:
+	https://github.com/kamicane/matrix3d/blob/master/lib/Matrix3d.js
+	https://github.com/ChromiumWebApps/chromium/blob/master/ui/gfx/transform_util.cc
+	http://www.w3.org/TR/css3-transforms/#decomposing-a-3d-matrix
+	*/
+
+	var normalize = require$$9$1
+
+	var create = require$$2$1
+	var clone = require$$7
+	var determinant = require$$1$2
+	var invert = require$$5$3
+	var transpose = require$$4$3
+	var vec3 = {
+	    length: require$$15,
+	    normalize: require$$1$3,
+	    dot: require$$0$3,
+	    cross: require$$9
+	}
+
+	var tmp = create()
+	var perspectiveMatrix = create()
+	var tmpVec4 = [0, 0, 0, 0]
+	var row = [ [0,0,0], [0,0,0], [0,0,0] ]
+	var pdum3 = [0,0,0]
+
+	module.exports = function decomposeMat4(matrix, translation, scale, skew, perspective, quaternion) {
+	    if (!translation) translation = [0,0,0]
+	    if (!scale) scale = [0,0,0]
+	    if (!skew) skew = [0,0,0]
+	    if (!perspective) perspective = [0,0,0,1]
+	    if (!quaternion) quaternion = [0,0,0,1]
+
+	    //normalize, if not possible then bail out early
+	    if (!normalize(tmp, matrix))
+	        return false
+
+	    // perspectiveMatrix is used to solve for perspective, but it also provides
+	    // an easy way to test for singularity of the upper 3x3 component.
+	    clone(perspectiveMatrix, tmp)
+
+	    perspectiveMatrix[3] = 0
+	    perspectiveMatrix[7] = 0
+	    perspectiveMatrix[11] = 0
+	    perspectiveMatrix[15] = 1
+
+	    // If the perspectiveMatrix is not invertible, we are also unable to
+	    // decompose, so we'll bail early. Constant taken from SkMatrix44::invert.
+	    if (Math.abs(determinant(perspectiveMatrix) < 1e-8))
+	        return false
+
+	    var a03 = tmp[3], a13 = tmp[7], a23 = tmp[11],
+	            a30 = tmp[12], a31 = tmp[13], a32 = tmp[14], a33 = tmp[15]
+
+	    // First, isolate perspective.
+	    if (a03 !== 0 || a13 !== 0 || a23 !== 0) {
+	        tmpVec4[0] = a03
+	        tmpVec4[1] = a13
+	        tmpVec4[2] = a23
+	        tmpVec4[3] = a33
+
+	        // Solve the equation by inverting perspectiveMatrix and multiplying
+	        // rightHandSide by the inverse.
+	        // resuing the perspectiveMatrix here since it's no longer needed
+	        var ret = invert(perspectiveMatrix, perspectiveMatrix)
+	        if (!ret) return false
+	        transpose(perspectiveMatrix, perspectiveMatrix)
+
+	        //multiply by transposed inverse perspective matrix, into perspective vec4
+	        vec4multMat4(perspective, tmpVec4, perspectiveMatrix)
+	    } else { 
+	        //no perspective
+	        perspective[0] = perspective[1] = perspective[2] = 0
+	        perspective[3] = 1
+	    }
+
+	    // Next take care of translation
+	    translation[0] = a30
+	    translation[1] = a31
+	    translation[2] = a32
+
+	    // Now get scale and shear. 'row' is a 3 element array of 3 component vectors
+	    mat3from4(row, tmp)
+
+	    // Compute X scale factor and normalize first row.
+	    scale[0] = vec3.length(row[0])
+	    vec3.normalize(row[0], row[0])
+
+	    // Compute XY shear factor and make 2nd row orthogonal to 1st.
+	    skew[0] = vec3.dot(row[0], row[1])
+	    combine(row[1], row[1], row[0], 1.0, -skew[0])
+
+	    // Now, compute Y scale and normalize 2nd row.
+	    scale[1] = vec3.length(row[1])
+	    vec3.normalize(row[1], row[1])
+	    skew[0] /= scale[1]
+
+	    // Compute XZ and YZ shears, orthogonalize 3rd row
+	    skew[1] = vec3.dot(row[0], row[2])
+	    combine(row[2], row[2], row[0], 1.0, -skew[1])
+	    skew[2] = vec3.dot(row[1], row[2])
+	    combine(row[2], row[2], row[1], 1.0, -skew[2])
+
+	    // Next, get Z scale and normalize 3rd row.
+	    scale[2] = vec3.length(row[2])
+	    vec3.normalize(row[2], row[2])
+	    skew[1] /= scale[2]
+	    skew[2] /= scale[2]
+
+
+	    // At this point, the matrix (in rows) is orthonormal.
+	    // Check for a coordinate system flip.  If the determinant
+	    // is -1, then negate the matrix and the scaling factors.
+	    vec3.cross(pdum3, row[1], row[2])
+	    if (vec3.dot(row[0], pdum3) < 0) {
+	        for (var i = 0; i < 3; i++) {
+	            scale[i] *= -1;
+	            row[i][0] *= -1
+	            row[i][1] *= -1
+	            row[i][2] *= -1
+	        }
+	    }
+
+	    // Now, get the rotations out
+	    quaternion[0] = 0.5 * Math.sqrt(Math.max(1 + row[0][0] - row[1][1] - row[2][2], 0))
+	    quaternion[1] = 0.5 * Math.sqrt(Math.max(1 - row[0][0] + row[1][1] - row[2][2], 0))
+	    quaternion[2] = 0.5 * Math.sqrt(Math.max(1 - row[0][0] - row[1][1] + row[2][2], 0))
+	    quaternion[3] = 0.5 * Math.sqrt(Math.max(1 + row[0][0] + row[1][1] + row[2][2], 0))
+
+	    if (row[2][1] > row[1][2])
+	        quaternion[0] = -quaternion[0]
+	    if (row[0][2] > row[2][0])
+	        quaternion[1] = -quaternion[1]
+	    if (row[1][0] > row[0][1])
+	        quaternion[2] = -quaternion[2]
+	    return true
+	}
+
+	//will be replaced by gl-vec4 eventually
+	function vec4multMat4(out, a, m) {
+	    var x = a[0], y = a[1], z = a[2], w = a[3];
+	    out[0] = m[0] * x + m[4] * y + m[8] * z + m[12] * w;
+	    out[1] = m[1] * x + m[5] * y + m[9] * z + m[13] * w;
+	    out[2] = m[2] * x + m[6] * y + m[10] * z + m[14] * w;
+	    out[3] = m[3] * x + m[7] * y + m[11] * z + m[15] * w;
+	    return out;
+	}
+
+	//gets upper-left of a 4x4 matrix into a 3x3 of vectors
+	function mat3from4(out, mat4x4) {
+	    out[0][0] = mat4x4[0]
+	    out[0][1] = mat4x4[1]
+	    out[0][2] = mat4x4[2]
+	    
+	    out[1][0] = mat4x4[4]
+	    out[1][1] = mat4x4[5]
+	    out[1][2] = mat4x4[6]
+
+	    out[2][0] = mat4x4[8]
+	    out[2][1] = mat4x4[9]
+	    out[2][2] = mat4x4[10]
+	}
+
+	function combine(out, a, b, scale1, scale2) {
+	    out[0] = a[0] * scale1 + b[0] * scale2
+	    out[1] = a[1] * scale1 + b[1] * scale2
+	    out[2] = a[2] * scale1 + b[2] * scale2
+	}
+	});
+
+	var require$$2$2 = (index$3 && typeof index$3 === 'object' && 'default' in index$3 ? index$3['default'] : index$3);
 
 	var defaults$1 = createCommonjsModule(function (module, exports) {
 	exports.color = function(color) {
@@ -1378,10 +1689,10 @@
 	}
 	});
 
-	var require$$0$3 = (defaults$1 && typeof defaults$1 === 'object' && 'default' in defaults$1 ? defaults$1['default'] : defaults$1);
+	var require$$0$4 = (defaults$1 && typeof defaults$1 === 'object' && 'default' in defaults$1 ? defaults$1['default'] : defaults$1);
 
-	var index$3 = createCommonjsModule(function (module) {
-	var defaults = require$$0$3
+	var index$4 = createCommonjsModule(function (module) {
+	var defaults = require$$0$4
 
 	module.exports = clear
 
@@ -1437,7 +1748,7 @@
 	}
 	});
 
-	var clearColor = (index$3 && typeof index$3 === 'object' && 'default' in index$3 ? index$3['default'] : index$3);
+	var clearColor = (index$4 && typeof index$4 === 'object' && 'default' in index$4 ? index$4['default'] : index$4);
 
 	var GLError = createCommonjsModule(function (module) {
 	function GLError (rawError, shortMessage, longMessage) {
@@ -1455,7 +1766,7 @@
 	module.exports = GLError
 	});
 
-	var require$$0$4 = (GLError && typeof GLError === 'object' && 'default' in GLError ? GLError['default'] : GLError);
+	var require$$0$5 = (GLError && typeof GLError === 'object' && 'default' in GLError ? GLError['default'] : GLError);
 
 	var runtimeReflect = createCommonjsModule(function (module, exports) {
 	'use strict'
@@ -1538,7 +1849,7 @@
 	}
 	});
 
-	var require$$1$1 = (runtimeReflect && typeof runtimeReflect === 'object' && 'default' in runtimeReflect ? runtimeReflect['default'] : runtimeReflect);
+	var require$$1$4 = (runtimeReflect && typeof runtimeReflect === 'object' && 'default' in runtimeReflect ? runtimeReflect['default'] : runtimeReflect);
 
 	var hiddenStore = createCommonjsModule(function (module) {
 	module.exports = hiddenStore;
@@ -1559,10 +1870,10 @@
 	}
 	});
 
-	var require$$0$7 = (hiddenStore && typeof hiddenStore === 'object' && 'default' in hiddenStore ? hiddenStore['default'] : hiddenStore);
+	var require$$0$8 = (hiddenStore && typeof hiddenStore === 'object' && 'default' in hiddenStore ? hiddenStore['default'] : hiddenStore);
 
 	var createStore = createCommonjsModule(function (module) {
-	var hiddenStore = require$$0$7;
+	var hiddenStore = require$$0$8;
 
 	module.exports = createStore;
 
@@ -1583,14 +1894,14 @@
 	}
 	});
 
-	var require$$0$6 = (createStore && typeof createStore === 'object' && 'default' in createStore ? createStore['default'] : createStore);
+	var require$$0$7 = (createStore && typeof createStore === 'object' && 'default' in createStore ? createStore['default'] : createStore);
 
-	var index$5 = createCommonjsModule(function (module) {
+	var index$6 = createCommonjsModule(function (module) {
 	// Original - @Gozola. 
 	// https://gist.github.com/Gozala/1269991
 	// This is a reimplemented version (with a few bug fixes).
 
-	var createStore = require$$0$6;
+	var createStore = require$$0$7;
 
 	module.exports = weakMap;
 
@@ -1616,9 +1927,9 @@
 	}
 	});
 
-	var require$$0$5 = (index$5 && typeof index$5 === 'object' && 'default' in index$5 ? index$5['default'] : index$5);
+	var require$$0$6 = (index$6 && typeof index$6 === 'object' && 'default' in index$6 ? index$6['default'] : index$6);
 
-	var index$9 = createCommonjsModule(function (module) {
+	var index$10 = createCommonjsModule(function (module) {
 	/*!
 	 * repeat-string <https://github.com/jonschlinkert/repeat-string>
 	 *
@@ -1688,9 +1999,9 @@
 	}
 	});
 
-	var require$$0$10 = (index$9 && typeof index$9 === 'object' && 'default' in index$9 ? index$9['default'] : index$9);
+	var require$$0$11 = (index$10 && typeof index$10 === 'object' && 'default' in index$10 ? index$10['default'] : index$10);
 
-	var index$8 = createCommonjsModule(function (module) {
+	var index$9 = createCommonjsModule(function (module) {
 	/*!
 	 * pad-left <https://github.com/jonschlinkert/pad-left>
 	 *
@@ -1700,7 +2011,7 @@
 
 	'use strict';
 
-	var repeat = require$$0$10;
+	var repeat = require$$0$11;
 
 	module.exports = function padLeft(str, num, ch) {
 	  ch = typeof ch !== 'undefined' ? (ch + '') : ' ';
@@ -1708,10 +2019,10 @@
 	};
 	});
 
-	var require$$0$9 = (index$8 && typeof index$8 === 'object' && 'default' in index$8 ? index$8['default'] : index$8);
+	var require$$0$10 = (index$9 && typeof index$9 === 'object' && 'default' in index$9 ? index$9['default'] : index$9);
 
-	var index$7 = createCommonjsModule(function (module) {
-	var padLeft = require$$0$9
+	var index$8 = createCommonjsModule(function (module) {
+	var padLeft = require$$0$10
 
 	module.exports = addLineNumbers
 	function addLineNumbers (string, start, delim) {
@@ -1729,7 +2040,7 @@
 	}
 	});
 
-	var require$$0$8 = (index$7 && typeof index$7 === 'object' && 'default' in index$7 ? index$7['default'] : index$7);
+	var require$$0$9 = (index$8 && typeof index$8 === 'object' && 'default' in index$8 ? index$8['default'] : index$8);
 
 	var atobNode = createCommonjsModule(function (module) {
 	module.exports = function atob(str) {
@@ -1737,7 +2048,7 @@
 	}
 	});
 
-	var require$$0$11 = (atobNode && typeof atobNode === 'object' && 'default' in atobNode ? atobNode['default'] : atobNode);
+	var require$$0$12 = (atobNode && typeof atobNode === 'object' && 'default' in atobNode ? atobNode['default'] : atobNode);
 
 	var builtins = createCommonjsModule(function (module) {
 	module.exports = [
@@ -1892,11 +2203,11 @@
 	]
 	});
 
-	var require$$0$14 = (builtins && typeof builtins === 'object' && 'default' in builtins ? builtins['default'] : builtins);
+	var require$$0$15 = (builtins && typeof builtins === 'object' && 'default' in builtins ? builtins['default'] : builtins);
 
 	var builtins300es = createCommonjsModule(function (module) {
 	// 300es builtins/reserved words that were previously valid in v100
-	var v100 = require$$0$14
+	var v100 = require$$0$15
 
 	// The texture2D|Cube functions have been removed
 	// And the gl_ features are updated
@@ -1966,7 +2277,7 @@
 	])
 	});
 
-	var require$$0$13 = (builtins300es && typeof builtins300es === 'object' && 'default' in builtins300es ? builtins300es['default'] : builtins300es);
+	var require$$0$14 = (builtins300es && typeof builtins300es === 'object' && 'default' in builtins300es ? builtins300es['default'] : builtins300es);
 
 	var literals = createCommonjsModule(function (module) {
 	module.exports = [
@@ -2064,10 +2375,10 @@
 	]
 	});
 
-	var require$$0$15 = (literals && typeof literals === 'object' && 'default' in literals ? literals['default'] : literals);
+	var require$$0$16 = (literals && typeof literals === 'object' && 'default' in literals ? literals['default'] : literals);
 
 	var literals300es = createCommonjsModule(function (module) {
-	var v100 = require$$0$15
+	var v100 = require$$0$16
 
 	module.exports = v100.slice().concat([
 	   'layout'
@@ -2157,7 +2468,7 @@
 	])
 	});
 
-	var require$$1$5 = (literals300es && typeof literals300es === 'object' && 'default' in literals300es ? literals300es['default'] : literals300es);
+	var require$$1$8 = (literals300es && typeof literals300es === 'object' && 'default' in literals300es ? literals300es['default'] : literals300es);
 
 	var operators = createCommonjsModule(function (module) {
 	module.exports = [
@@ -2209,16 +2520,16 @@
 	]
 	});
 
-	var require$$3$1 = (operators && typeof operators === 'object' && 'default' in operators ? operators['default'] : operators);
+	var require$$3$3 = (operators && typeof operators === 'object' && 'default' in operators ? operators['default'] : operators);
 
-	var index$11 = createCommonjsModule(function (module) {
+	var index$12 = createCommonjsModule(function (module) {
 	module.exports = tokenize
 
-	var literals100 = require$$0$15
-	  , operators = require$$3$1
-	  , builtins100 = require$$0$14
-	  , literals300es = require$$1$5
-	  , builtins300es = require$$0$13
+	var literals100 = require$$0$16
+	  , operators = require$$3$3
+	  , builtins100 = require$$0$15
+	  , literals300es = require$$1$8
+	  , builtins300es = require$$0$14
 
 	var NORMAL = 999          // <-- never emitted
 	  , TOKEN = 9999          // <-- never emitted
@@ -2576,10 +2887,10 @@
 	}
 	});
 
-	var require$$0$12 = (index$11 && typeof index$11 === 'object' && 'default' in index$11 ? index$11['default'] : index$11);
+	var require$$0$13 = (index$12 && typeof index$12 === 'object' && 'default' in index$12 ? index$12['default'] : index$12);
 
 	var string = createCommonjsModule(function (module) {
-	var tokenize = require$$0$12
+	var tokenize = require$$0$13
 
 	module.exports = tokenizeString
 
@@ -2594,11 +2905,11 @@
 	}
 	});
 
-	var require$$1$4 = (string && typeof string === 'object' && 'default' in string ? string['default'] : string);
+	var require$$1$7 = (string && typeof string === 'object' && 'default' in string ? string['default'] : string);
 
-	var index$10 = createCommonjsModule(function (module) {
-	var tokenize = require$$1$4
-	var atob     = require$$0$11
+	var index$11 = createCommonjsModule(function (module) {
+	var tokenize = require$$1$7
+	var atob     = require$$0$12
 
 	module.exports = getName
 
@@ -2622,7 +2933,7 @@
 	}
 	});
 
-	var require$$1$3 = (index$10 && typeof index$10 === 'object' && 'default' in index$10 ? index$10['default'] : index$10);
+	var require$$1$6 = (index$11 && typeof index$11 === 'object' && 'default' in index$11 ? index$11['default'] : index$11);
 
 	var numbers = createCommonjsModule(function (module) {
 	module.exports = {
@@ -2925,17 +3236,17 @@
 	}
 	});
 
-	var require$$0$16 = (numbers && typeof numbers === 'object' && 'default' in numbers ? numbers['default'] : numbers);
+	var require$$0$17 = (numbers && typeof numbers === 'object' && 'default' in numbers ? numbers['default'] : numbers);
 
 	var lookup = createCommonjsModule(function (module) {
-	var gl10 = require$$0$16
+	var gl10 = require$$0$17
 
 	module.exports = function lookupConstant (number) {
 	  return gl10[number]
 	}
 	});
 
-	var require$$2$2 = (lookup && typeof lookup === 'object' && 'default' in lookup ? lookup['default'] : lookup);
+	var require$$2$4 = (lookup && typeof lookup === 'object' && 'default' in lookup ? lookup['default'] : lookup);
 
 	var sprintf = createCommonjsModule(function (module, exports) {
 	(function(window) {
@@ -3148,14 +3459,14 @@
 	})(typeof window === "undefined" ? commonjsGlobal : window);
 	});
 
-	var require$$3$2 = (sprintf && typeof sprintf === 'object' && 'default' in sprintf ? sprintf['default'] : sprintf);
+	var require$$3$4 = (sprintf && typeof sprintf === 'object' && 'default' in sprintf ? sprintf['default'] : sprintf);
 	var sprintf = sprintf.sprintf;
 
-	var index$6 = createCommonjsModule(function (module) {
-	var sprintf = require$$3$2.sprintf;
-	var glConstants = require$$2$2;
-	var shaderName = require$$1$3;
-	var addLineNumbers = require$$0$8;
+	var index$7 = createCommonjsModule(function (module) {
+	var sprintf = require$$3$4.sprintf;
+	var glConstants = require$$2$4;
+	var shaderName = require$$1$6;
+	var addLineNumbers = require$$0$9;
 
 	module.exports = formatCompilerError;
 
@@ -3205,7 +3516,7 @@
 	}
 	});
 
-	var require$$1$2 = (index$6 && typeof index$6 === 'object' && 'default' in index$6 ? index$6['default'] : index$6);
+	var require$$1$5 = (index$7 && typeof index$7 === 'object' && 'default' in index$7 ? index$7['default'] : index$7);
 
 	var shaderCache = createCommonjsModule(function (module, exports) {
 	'use strict'
@@ -3213,10 +3524,10 @@
 	exports.shader   = getShaderReference
 	exports.program  = createProgram
 
-	var GLError = require$$0$4
-	var formatCompilerError = require$$1$2;
+	var GLError = require$$0$5
+	var formatCompilerError = require$$1$5;
 
-	var weakMap = typeof WeakMap === 'undefined' ? require$$0$5 : WeakMap
+	var weakMap = typeof WeakMap === 'undefined' ? require$$0$6 : WeakMap
 	var CACHE = new weakMap()
 
 	var SHADER_COUNTER = 0
@@ -3346,7 +3657,7 @@
 	}
 	});
 
-	var require$$2$1 = (shaderCache && typeof shaderCache === 'object' && 'default' in shaderCache ? shaderCache['default'] : shaderCache);
+	var require$$2$3 = (shaderCache && typeof shaderCache === 'object' && 'default' in shaderCache ? shaderCache['default'] : shaderCache);
 
 	var reflect = createCommonjsModule(function (module) {
 	'use strict'
@@ -3408,14 +3719,14 @@
 	}
 	});
 
-	var require$$1$6 = (reflect && typeof reflect === 'object' && 'default' in reflect ? reflect['default'] : reflect);
+	var require$$1$9 = (reflect && typeof reflect === 'object' && 'default' in reflect ? reflect['default'] : reflect);
 
 	var createAttributes = createCommonjsModule(function (module) {
 	'use strict'
 
 	module.exports = createAttributeWrapper
 
-	var GLError = require$$0$4
+	var GLError = require$$0$5
 
 	function ShaderAttribute(
 	    gl
@@ -3676,13 +3987,13 @@
 	}
 	});
 
-	var require$$4$1 = (createAttributes && typeof createAttributes === 'object' && 'default' in createAttributes ? createAttributes['default'] : createAttributes);
+	var require$$4$4 = (createAttributes && typeof createAttributes === 'object' && 'default' in createAttributes ? createAttributes['default'] : createAttributes);
 
 	var createUniforms = createCommonjsModule(function (module) {
 	'use strict'
 
-	var coallesceUniforms = require$$1$6
-	var GLError = require$$0$4
+	var coallesceUniforms = require$$1$9
+	var GLError = require$$0$5
 
 	module.exports = createUniformWrapper
 
@@ -3872,17 +4183,17 @@
 	}
 	});
 
-	var require$$5$1 = (createUniforms && typeof createUniforms === 'object' && 'default' in createUniforms ? createUniforms['default'] : createUniforms);
+	var require$$5$4 = (createUniforms && typeof createUniforms === 'object' && 'default' in createUniforms ? createUniforms['default'] : createUniforms);
 
-	var index$4 = createCommonjsModule(function (module) {
+	var index$5 = createCommonjsModule(function (module) {
 	'use strict'
 
-	var createUniformWrapper   = require$$5$1
-	var createAttributeWrapper = require$$4$1
-	var makeReflect            = require$$1$6
-	var shaderCache            = require$$2$1
-	var runtime                = require$$1$1
-	var GLError                = require$$0$4
+	var createUniformWrapper   = require$$5$4
+	var createAttributeWrapper = require$$4$4
+	var makeReflect            = require$$1$9
+	var shaderCache            = require$$2$3
+	var runtime                = require$$1$4
+	var GLError                = require$$0$5
 
 	//Shader object
 	function Shader(gl) {
@@ -4111,9 +4422,9 @@
 	module.exports = createShader
 	});
 
-	var initShader = (index$4 && typeof index$4 === 'object' && 'default' in index$4 ? index$4['default'] : index$4);
+	var initShader = (index$5 && typeof index$5 === 'object' && 'default' in index$5 ? index$5['default'] : index$5);
 
-	var index$12 = createCommonjsModule(function (module) {
+	var index$13 = createCommonjsModule(function (module) {
 	/**
 	 * Determine if an object is Buffer
 	 *
@@ -4133,7 +4444,7 @@
 	}
 	});
 
-	var require$$0$18 = (index$12 && typeof index$12 === 'object' && 'default' in index$12 ? index$12['default'] : index$12);
+	var require$$0$19 = (index$13 && typeof index$13 === 'object' && 'default' in index$13 ? index$13['default'] : index$13);
 
 	var iota = createCommonjsModule(function (module) {
 	"use strict"
@@ -4149,11 +4460,11 @@
 	module.exports = iota
 	});
 
-	var require$$1$7 = (iota && typeof iota === 'object' && 'default' in iota ? iota['default'] : iota);
+	var require$$1$10 = (iota && typeof iota === 'object' && 'default' in iota ? iota['default'] : iota);
 
 	var ndarray = createCommonjsModule(function (module) {
-	var iota = require$$1$7
-	var isBuffer = require$$0$18
+	var iota = require$$1$10
+	var isBuffer = require$$0$19
 
 	var hasTypedArrays  = ((typeof Float64Array) !== "undefined")
 
@@ -4497,7 +4808,7 @@ b"+i+"*=d\
 	module.exports = wrappedNDArrayCtor
 	});
 
-	var require$$0$17 = (ndarray && typeof ndarray === 'object' && 'default' in ndarray ? ndarray['default'] : ndarray);
+	var require$$0$18 = (ndarray && typeof ndarray === 'object' && 'default' in ndarray ? ndarray['default'] : ndarray);
 
 	var uniq = createCommonjsModule(function (module) {
 	"use strict"
@@ -4559,12 +4870,12 @@ b"+i+"*=d\
 	module.exports = unique
 	});
 
-	var require$$0$22 = (uniq && typeof uniq === 'object' && 'default' in uniq ? uniq['default'] : uniq);
+	var require$$0$23 = (uniq && typeof uniq === 'object' && 'default' in uniq ? uniq['default'] : uniq);
 
 	var compile = createCommonjsModule(function (module) {
 	"use strict"
 
-	var uniq = require$$0$22
+	var uniq = require$$0$23
 
 	// This function generates very simple loops analogous to how you typically traverse arrays (the outermost loop corresponds to the slowest changing index, the innermost loop to the fastest changing index)
 	// TODO: If two arrays have the same strides (and offsets) there is potential for decreasing the number of "pointers" and related variables. The drawback is that the type signature would become more specific and that there would thus be less potential for caching, but it might still be worth it, especially when dealing with large numbers of arguments.
@@ -4918,7 +5229,7 @@ b"+i+"*=d\
 	module.exports = generateCWiseOp
 	});
 
-	var require$$0$21 = (compile && typeof compile === 'object' && 'default' in compile ? compile['default'] : compile);
+	var require$$0$22 = (compile && typeof compile === 'object' && 'default' in compile ? compile['default'] : compile);
 
 	var thunk = createCommonjsModule(function (module) {
 	"use strict"
@@ -4946,7 +5257,7 @@ b"+i+"*=d\
 	//   return thunk(compile.bind1(proc))
 	// }
 
-	var compile = require$$0$21
+	var compile = require$$0$22
 
 	function createThunk(proc) {
 	  var code = ["'use strict'", "var CACHED={}"]
@@ -5009,12 +5320,12 @@ b"+i+"*=d\
 	module.exports = createThunk
 	});
 
-	var require$$0$20 = (thunk && typeof thunk === 'object' && 'default' in thunk ? thunk['default'] : thunk);
+	var require$$0$21 = (thunk && typeof thunk === 'object' && 'default' in thunk ? thunk['default'] : thunk);
 
 	var compiler = createCommonjsModule(function (module) {
 	"use strict"
 
-	var createThunk = require$$0$20
+	var createThunk = require$$0$21
 
 	function Procedure() {
 	  this.argTypes = []
@@ -5123,12 +5434,12 @@ b"+i+"*=d\
 	module.exports = compileCwise
 	});
 
-	var require$$0$19 = (compiler && typeof compiler === 'object' && 'default' in compiler ? compiler['default'] : compiler);
+	var require$$0$20 = (compiler && typeof compiler === 'object' && 'default' in compiler ? compiler['default'] : compiler);
 
 	var ndarrayOps = createCommonjsModule(function (module, exports) {
 	"use strict"
 
-	var compile = require$$0$19
+	var compile = require$$0$20
 
 	var EmptyProc = {
 	  body: "",
@@ -5587,7 +5898,7 @@ b"+i+"*=d\
 	})
 	});
 
-	var require$$1$8 = (ndarrayOps && typeof ndarrayOps === 'object' && 'default' in ndarrayOps ? ndarrayOps['default'] : ndarrayOps);
+	var require$$1$11 = (ndarrayOps && typeof ndarrayOps === 'object' && 'default' in ndarrayOps ? ndarrayOps['default'] : ndarrayOps);
 
 	var dup = createCommonjsModule(function (module) {
 	"use strict"
@@ -5641,7 +5952,7 @@ b"+i+"*=d\
 	module.exports = dupe
 	});
 
-	var require$$0$23 = (dup && typeof dup === 'object' && 'default' in dup ? dup['default'] : dup);
+	var require$$0$24 = (dup && typeof dup === 'object' && 'default' in dup ? dup['default'] : dup);
 
 	var twiddle = createCommonjsModule(function (module, exports) {
 	/**
@@ -5849,13 +6160,13 @@ b"+i+"*=d\
 	}
 	});
 
-	var require$$1$9 = (twiddle && typeof twiddle === 'object' && 'default' in twiddle ? twiddle['default'] : twiddle);
+	var require$$1$12 = (twiddle && typeof twiddle === 'object' && 'default' in twiddle ? twiddle['default'] : twiddle);
 
 	var pool = createCommonjsModule(function (module, exports) {
 	'use strict'
 
-	var bits = require$$1$9
-	var dup = require$$0$23
+	var bits = require$$1$12
+	var dup = require$$0$24
 
 	//Legacy pool support
 	if(!commonjsGlobal.__TYPEDARRAY_POOL) {
@@ -6068,14 +6379,14 @@ b"+i+"*=d\
 	}
 	});
 
-	var require$$2$3 = (pool && typeof pool === 'object' && 'default' in pool ? pool['default'] : pool);
+	var require$$2$5 = (pool && typeof pool === 'object' && 'default' in pool ? pool['default'] : pool);
 
 	var buffer = createCommonjsModule(function (module) {
 	"use strict"
 
-	var pool = require$$2$3
-	var ops = require$$1$8
-	var ndarray = require$$0$17
+	var pool = require$$2$5
+	var ops = require$$1$11
+	var ndarray = require$$0$18
 
 	var SUPPORTED_TYPES = [
 	  "uint8",
@@ -6227,7 +6538,7 @@ b"+i+"*=d\
 
 	var initBuffer = (buffer && typeof buffer === 'object' && 'default' in buffer ? buffer['default'] : buffer);
 
-	var basicVertex = '\nprecision mediump float;\n\nattribute vec3 aPosition;\nattribute vec4 aColor;\n\nuniform mat4 uElement;\nuniform mat4 uProjection;\nuniform mat4 uTransform;\n\nvarying vec4 vColor;\n\nvoid main() {\n  gl_Position = uProjection * uElement * (vec4(aPosition, 1.0) * uTransform);\n  vColor = aColor;\n}\n';
+	var basicVertex = '\nprecision mediump float;\n\nattribute vec3 aPosition;\nattribute vec4 aColor;\n\nuniform mat4 uElement;\nuniform mat4 uProjection;\n\nvarying vec4 vColor;\n\n// invert Y axis against css transform matrix\nmat4 invertY = mat4(1, 0, 0, 0, 0, -1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);\n\nvoid main() {\n  gl_Position = uProjection * uElement * vec4(aPosition, 1.0) * invertY;\n  vColor = aColor;\n}\n';
 
 	var basicFragment = '\nprecision mediump float;\n\nvarying vec4 vColor;\n\nvoid main() {\n  gl_FragColor = vec4(vColor);\n}\n\n';
 
@@ -6288,10 +6599,11 @@ b"+i+"*=d\
 	            this.basicShader.bind();
 	            this.basicShader.uniforms.uProjection = projectionMatrix;
 	            this.basicShader.uniforms.uElement = elementMatrix;
-	            this.basicShader.uniforms.uTransform = transformMatrix;
 
-	            var vertices = initBuffer(this.gl, new Float32Array(el.getVertices(projectionMatrix, elementMatrix, this.viewportWidth, this.viewportHeight)));
-	            var colors = initBuffer(this.gl, new Float32Array(el.getColors()));
+	            var vertices = el.getVertices(projectionMatrix, elementMatrix, this.viewportWidth, this.viewportHeight);
+	            vertices = initBuffer(this.gl, new Float32Array(vertices));
+	            var colors = el.getColors();
+	            colors = initBuffer(this.gl, new Float32Array(colors));
 
 	            vertices.bind();
 	            this.basicShader.attributes.aPosition.pointer();
@@ -6321,12 +6633,12 @@ b"+i+"*=d\
 	}
 	});
 
-	var require$$0$25 = (create$3 && typeof create$3 === 'object' && 'default' in create$3 ? create$3['default'] : create$3);
+	var require$$0$26 = (create$3 && typeof create$3 === 'object' && 'default' in create$3 ? create$3['default'] : create$3);
 
 	var forEach$1 = createCommonjsModule(function (module) {
 	module.exports = forEach;
 
-	var vec = require$$0$25()
+	var vec = require$$0$26()
 
 	/**
 	 * Perform some operation over an array of vec3s.
@@ -6370,7 +6682,7 @@ b"+i+"*=d\
 	}
 	});
 
-	var require$$0$24 = (forEach$1 && typeof forEach$1 === 'object' && 'default' in forEach$1 ? forEach$1['default'] : forEach$1);
+	var require$$0$25 = (forEach$1 && typeof forEach$1 === 'object' && 'default' in forEach$1 ? forEach$1['default'] : forEach$1);
 
 	var rotateZ$4 = createCommonjsModule(function (module) {
 	module.exports = rotateZ;
@@ -6404,7 +6716,7 @@ b"+i+"*=d\
 	}
 	});
 
-	var require$$1$10 = (rotateZ$4 && typeof rotateZ$4 === 'object' && 'default' in rotateZ$4 ? rotateZ$4['default'] : rotateZ$4);
+	var require$$1$13 = (rotateZ$4 && typeof rotateZ$4 === 'object' && 'default' in rotateZ$4 ? rotateZ$4['default'] : rotateZ$4);
 
 	var rotateY$3 = createCommonjsModule(function (module) {
 	module.exports = rotateY;
@@ -6438,7 +6750,7 @@ b"+i+"*=d\
 	}
 	});
 
-	var require$$2$4 = (rotateY$3 && typeof rotateY$3 === 'object' && 'default' in rotateY$3 ? rotateY$3['default'] : rotateY$3);
+	var require$$2$6 = (rotateY$3 && typeof rotateY$3 === 'object' && 'default' in rotateY$3 ? rotateY$3['default'] : rotateY$3);
 
 	var rotateX$3 = createCommonjsModule(function (module) {
 	module.exports = rotateX;
@@ -6472,7 +6784,7 @@ b"+i+"*=d\
 	}
 	});
 
-	var require$$3$3 = (rotateX$3 && typeof rotateX$3 === 'object' && 'default' in rotateX$3 ? rotateX$3['default'] : rotateX$3);
+	var require$$3$5 = (rotateX$3 && typeof rotateX$3 === 'object' && 'default' in rotateX$3 ? rotateX$3['default'] : rotateX$3);
 
 	var transformQuat$1 = createCommonjsModule(function (module) {
 	module.exports = transformQuat;
@@ -6505,7 +6817,7 @@ b"+i+"*=d\
 	}
 	});
 
-	var require$$4$2 = (transformQuat$1 && typeof transformQuat$1 === 'object' && 'default' in transformQuat$1 ? transformQuat$1['default'] : transformQuat$1);
+	var require$$4$5 = (transformQuat$1 && typeof transformQuat$1 === 'object' && 'default' in transformQuat$1 ? transformQuat$1['default'] : transformQuat$1);
 
 	var transformMat3$1 = createCommonjsModule(function (module) {
 	module.exports = transformMat3;
@@ -6527,7 +6839,7 @@ b"+i+"*=d\
 	}
 	});
 
-	var require$$5$2 = (transformMat3$1 && typeof transformMat3$1 === 'object' && 'default' in transformMat3$1 ? transformMat3$1['default'] : transformMat3$1);
+	var require$$5$5 = (transformMat3$1 && typeof transformMat3$1 === 'object' && 'default' in transformMat3$1 ? transformMat3$1['default'] : transformMat3$1);
 
 	var transformMat4$1 = createCommonjsModule(function (module) {
 	module.exports = transformMat4;
@@ -6552,7 +6864,7 @@ b"+i+"*=d\
 	}
 	});
 
-	var require$$6$1 = (transformMat4$1 && typeof transformMat4$1 === 'object' && 'default' in transformMat4$1 ? transformMat4$1['default'] : transformMat4$1);
+	var require$$6$2 = (transformMat4$1 && typeof transformMat4$1 === 'object' && 'default' in transformMat4$1 ? transformMat4$1['default'] : transformMat4$1);
 
 	var random$2 = createCommonjsModule(function (module) {
 	module.exports = random;
@@ -6603,76 +6915,7 @@ b"+i+"*=d\
 	}
 	});
 
-	var require$$8$1 = (lerp$1 && typeof lerp$1 === 'object' && 'default' in lerp$1 ? lerp$1['default'] : lerp$1);
-
-	var cross$1 = createCommonjsModule(function (module) {
-	module.exports = cross;
-
-	/**
-	 * Computes the cross product of two vec3's
-	 *
-	 * @param {vec3} out the receiving vector
-	 * @param {vec3} a the first operand
-	 * @param {vec3} b the second operand
-	 * @returns {vec3} out
-	 */
-	function cross(out, a, b) {
-	    var ax = a[0], ay = a[1], az = a[2],
-	        bx = b[0], by = b[1], bz = b[2]
-
-	    out[0] = ay * bz - az * by
-	    out[1] = az * bx - ax * bz
-	    out[2] = ax * by - ay * bx
-	    return out
-	}
-	});
-
-	var require$$9$1 = (cross$1 && typeof cross$1 === 'object' && 'default' in cross$1 ? cross$1['default'] : cross$1);
-
-	var dot$1 = createCommonjsModule(function (module) {
-	module.exports = dot;
-
-	/**
-	 * Calculates the dot product of two vec3's
-	 *
-	 * @param {vec3} a the first operand
-	 * @param {vec3} b the second operand
-	 * @returns {Number} dot product of a and b
-	 */
-	function dot(a, b) {
-	    return a[0] * b[0] + a[1] * b[1] + a[2] * b[2]
-	}
-	});
-
-	var require$$0$26 = (dot$1 && typeof dot$1 === 'object' && 'default' in dot$1 ? dot$1['default'] : dot$1);
-
-	var normalize$1 = createCommonjsModule(function (module) {
-	module.exports = normalize;
-
-	/**
-	 * Normalize a vec3
-	 *
-	 * @param {vec3} out the receiving vector
-	 * @param {vec3} a vector to normalize
-	 * @returns {vec3} out
-	 */
-	function normalize(out, a) {
-	    var x = a[0],
-	        y = a[1],
-	        z = a[2]
-	    var len = x*x + y*y + z*z
-	    if (len > 0) {
-	        //TODO: evaluate use of glm_invsqrt here?
-	        len = 1 / Math.sqrt(len)
-	        out[0] = a[0] * len
-	        out[1] = a[1] * len
-	        out[2] = a[2] * len
-	    }
-	    return out
-	}
-	});
-
-	var require$$1$11 = (normalize$1 && typeof normalize$1 === 'object' && 'default' in normalize$1 ? normalize$1['default'] : normalize$1);
+	var require$$4$6 = (lerp$1 && typeof lerp$1 === 'object' && 'default' in lerp$1 ? lerp$1['default'] : lerp$1);
 
 	var inverse$1 = createCommonjsModule(function (module) {
 	module.exports = inverse;
@@ -6692,7 +6935,7 @@ b"+i+"*=d\
 	}
 	});
 
-	var require$$12$1 = (inverse$1 && typeof inverse$1 === 'object' && 'default' in inverse$1 ? inverse$1['default'] : inverse$1);
+	var require$$12 = (inverse$1 && typeof inverse$1 === 'object' && 'default' in inverse$1 ? inverse$1['default'] : inverse$1);
 
 	var negate$1 = createCommonjsModule(function (module) {
 	module.exports = negate;
@@ -6712,7 +6955,7 @@ b"+i+"*=d\
 	}
 	});
 
-	var require$$13$1 = (negate$1 && typeof negate$1 === 'object' && 'default' in negate$1 ? negate$1['default'] : negate$1);
+	var require$$13 = (negate$1 && typeof negate$1 === 'object' && 'default' in negate$1 ? negate$1['default'] : negate$1);
 
 	var squaredLength$1 = createCommonjsModule(function (module) {
 	module.exports = squaredLength;
@@ -6731,26 +6974,7 @@ b"+i+"*=d\
 	}
 	});
 
-	var require$$14$1 = (squaredLength$1 && typeof squaredLength$1 === 'object' && 'default' in squaredLength$1 ? squaredLength$1['default'] : squaredLength$1);
-
-	var length$1 = createCommonjsModule(function (module) {
-	module.exports = length;
-
-	/**
-	 * Calculates the length of a vec3
-	 *
-	 * @param {vec3} a vector to calculate length of
-	 * @returns {Number} length of a
-	 */
-	function length(a) {
-	    var x = a[0],
-	        y = a[1],
-	        z = a[2]
-	    return Math.sqrt(x*x + y*y + z*z)
-	}
-	});
-
-	var require$$15$1 = (length$1 && typeof length$1 === 'object' && 'default' in length$1 ? length$1['default'] : length$1);
+	var require$$14 = (squaredLength$1 && typeof squaredLength$1 === 'object' && 'default' in squaredLength$1 ? squaredLength$1['default'] : squaredLength$1);
 
 	var squaredDistance$1 = createCommonjsModule(function (module) {
 	module.exports = squaredDistance;
@@ -6790,7 +7014,7 @@ b"+i+"*=d\
 	}
 	});
 
-	var require$$17$1 = (distance$1 && typeof distance$1 === 'object' && 'default' in distance$1 ? distance$1['default'] : distance$1);
+	var require$$17 = (distance$1 && typeof distance$1 === 'object' && 'default' in distance$1 ? distance$1['default'] : distance$1);
 
 	var scaleAndAdd$1 = createCommonjsModule(function (module) {
 	module.exports = scaleAndAdd;
@@ -6812,7 +7036,7 @@ b"+i+"*=d\
 	}
 	});
 
-	var require$$18$1 = (scaleAndAdd$1 && typeof scaleAndAdd$1 === 'object' && 'default' in scaleAndAdd$1 ? scaleAndAdd$1['default'] : scaleAndAdd$1);
+	var require$$18 = (scaleAndAdd$1 && typeof scaleAndAdd$1 === 'object' && 'default' in scaleAndAdd$1 ? scaleAndAdd$1['default'] : scaleAndAdd$1);
 
 	var scale$3 = createCommonjsModule(function (module) {
 	module.exports = scale;
@@ -6875,7 +7099,7 @@ b"+i+"*=d\
 	}
 	});
 
-	var require$$21$1 = (min$2 && typeof min$2 === 'object' && 'default' in min$2 ? min$2['default'] : min$2);
+	var require$$21 = (min$2 && typeof min$2 === 'object' && 'default' in min$2 ? min$2['default'] : min$2);
 
 	var divide$1 = createCommonjsModule(function (module) {
 	module.exports = divide;
@@ -6896,7 +7120,7 @@ b"+i+"*=d\
 	}
 	});
 
-	var require$$22$1 = (divide$1 && typeof divide$1 === 'object' && 'default' in divide$1 ? divide$1['default'] : divide$1);
+	var require$$22 = (divide$1 && typeof divide$1 === 'object' && 'default' in divide$1 ? divide$1['default'] : divide$1);
 
 	var multiply$3 = createCommonjsModule(function (module) {
 	module.exports = multiply;
@@ -7023,14 +7247,14 @@ b"+i+"*=d\
 	}
 	});
 
-	var require$$2$5 = (fromValues$1 && typeof fromValues$1 === 'object' && 'default' in fromValues$1 ? fromValues$1['default'] : fromValues$1);
+	var require$$2$7 = (fromValues$1 && typeof fromValues$1 === 'object' && 'default' in fromValues$1 ? fromValues$1['default'] : fromValues$1);
 
 	var angle$1 = createCommonjsModule(function (module) {
 	module.exports = angle
 
-	var fromValues = require$$2$5
-	var normalize = require$$1$11
-	var dot = require$$0$26
+	var fromValues = require$$2$7
+	var normalize = require$$1$3
+	var dot = require$$0$3
 
 	/**
 	 * Get the angle between two 3D vectors
@@ -7077,44 +7301,44 @@ b"+i+"*=d\
 
 	var require$$30 = (clone$3 && typeof clone$3 === 'object' && 'default' in clone$3 ? clone$3['default'] : clone$3);
 
-	var index$13 = createCommonjsModule(function (module) {
+	var index$14 = createCommonjsModule(function (module) {
 	module.exports = {
-	  create: require$$0$25
+	  create: require$$0$26
 	  , clone: require$$30
 	  , angle: require$$29
-	  , fromValues: require$$2$5
+	  , fromValues: require$$2$7
 	  , copy: require$$27
 	  , set: require$$26
 	  , add: require$$25
 	  , subtract: require$$24
 	  , multiply: require$$23
-	  , divide: require$$22$1
-	  , min: require$$21$1
+	  , divide: require$$22
+	  , min: require$$21
 	  , max: require$$20$1
 	  , scale: require$$19
-	  , scaleAndAdd: require$$18$1
-	  , distance: require$$17$1
+	  , scaleAndAdd: require$$18
+	  , distance: require$$17
 	  , squaredDistance: require$$16$1
-	  , length: require$$15$1
-	  , squaredLength: require$$14$1
-	  , negate: require$$13$1
-	  , inverse: require$$12$1
-	  , normalize: require$$1$11
-	  , dot: require$$0$26
-	  , cross: require$$9$1
-	  , lerp: require$$8$1
+	  , length: require$$15
+	  , squaredLength: require$$14
+	  , negate: require$$13
+	  , inverse: require$$12
+	  , normalize: require$$1$3
+	  , dot: require$$0$3
+	  , cross: require$$9
+	  , lerp: require$$4$6
 	  , random: require$$7$1
-	  , transformMat4: require$$6$1
-	  , transformMat3: require$$5$2
-	  , transformQuat: require$$4$2
-	  , rotateX: require$$3$3
-	  , rotateY: require$$2$4
-	  , rotateZ: require$$1$10
-	  , forEach: require$$0$24
+	  , transformMat4: require$$6$2
+	  , transformMat3: require$$5$5
+	  , transformQuat: require$$4$5
+	  , rotateX: require$$3$5
+	  , rotateY: require$$2$6
+	  , rotateZ: require$$1$13
+	  , forEach: require$$0$25
 	}
 	});
 
-	var vec3 = (index$13 && typeof index$13 === 'object' && 'default' in index$13 ? index$13['default'] : index$13);
+	var vec3 = (index$14 && typeof index$14 === 'object' && 'default' in index$14 ? index$14['default'] : index$14);
 
 	var Canvas2DEngine = function (_Engine) {
 	    inherits(Canvas2DEngine, _Engine);
@@ -7169,8 +7393,9 @@ b"+i+"*=d\
 	                var x = _vec3$transformMat2[0];
 	                var y = _vec3$transformMat2[1];
 	                var z = _vec3$transformMat2[2];
+	                // invert Y axis against css transform matrix
 
-	                var _translateAxis = translateAxis([x, y, z], _this2.viewportWidth, _this2.viewportHeight);
+	                var _translateAxis = translateAxis([x, -y, z], _this2.viewportWidth, _this2.viewportHeight);
 
 	                var _translateAxis2 = slicedToArray(_translateAxis, 3);
 
@@ -7297,7 +7522,7 @@ b"+i+"*=d\
 
 	var require$$0$27 = (projectMat4 && typeof projectMat4 === 'object' && 'default' in projectMat4 ? projectMat4['default'] : projectMat4);
 
-	var index$14 = createCommonjsModule(function (module) {
+	var index$15 = createCommonjsModule(function (module) {
 	var transform = require$$0$27
 
 	module.exports = unproject
@@ -7339,7 +7564,7 @@ b"+i+"*=d\
 	}
 	});
 
-	var unproject = (index$14 && typeof index$14 === 'object' && 'default' in index$14 ? index$14['default'] : index$14);
+	var unproject = (index$15 && typeof index$15 === 'object' && 'default' in index$15 ? index$15['default'] : index$15);
 
 	var Rect = function (_Element) {
 	    inherits(Rect, _Element);
@@ -7377,11 +7602,12 @@ b"+i+"*=d\
 	        key: 'transform',
 	        value: function transform(matrix) {
 	            mat4.copy(this.transformMatrix, matrix);
-	            // mat4.multiply(this.transformMatrix, this.transformMatrix, matrix);
 	        }
 	    }, {
 	        key: 'getVertices',
 	        value: function getVertices(projView, modelView, width, height) {
+	            var _this2 = this;
+
 	            var invertProjView = mat4.invert([], mat4.multiply([], projView, modelView));
 	            var viewport = [0, 0, width, height];
 
@@ -7395,6 +7621,7 @@ b"+i+"*=d\
 
 	            points.forEach(function (point) {
 	                var vertex = [];
+	                point = vec3.transformMat4([], point, _this2.transformMatrix);
 
 	                var _translateAxis = translateAxis(point, width, height);
 
@@ -7419,13 +7646,347 @@ b"+i+"*=d\
 	    return Rect;
 	}(Element);
 
+	var index$16 = createCommonjsModule(function (module) {
+	var mat4RotateX = require$$6$1;
+	var mat4RotateY = require$$5$2;
+	var mat4RotateZ = require$$4$1;
+	var mat4Rotate = require$$3$1;
+	var mat4Scale = require$$1$1;
+	var mat4Translate = require$$4$2;
+	var mat4Multiply = require$$3$2;
+
+	// Spec was used for reference http://www.w3.org/TR/2009/WD-css3-3d-transforms-20090320/
+	module.exports = function cssTransformToMatrix(value) {
+
+	  var functions = value.match(/[A-z3]+\([^\)]+/g) || [];
+	  var outMatrix = createMatrix();
+	  var matrices = [];
+
+	  functions.forEach( function(func) {
+
+	    var split = func.split('('); 
+	    var name = split[ 0 ]
+	    var value = split[ 1 ];
+	    var matrix;
+
+	    switch(name) {
+
+	      /////// 2D FUNCTIONS ///////
+	      case 'matrix':
+	        // matrix(
+	        //   a,b,c,
+	        //   d,e,f
+	        // ) is equivalent to 
+
+	        // matrix3d(
+	        //   a, b, 0, 0, 
+	        //   c, d, 0, 0, 
+	        //   0, 0, 1, 0, 
+	        //   e, f, 0, 1)
+
+
+	        value = value.split(',').map(parseFloat);
+	        matrix = [
+	          value[ 0 ], value[ 1 ], 0, 0,
+	          value[ 2 ], value[ 3 ], 0, 0,
+	          0,          0,          1, 0,
+	          value[ 4 ], value[ 5 ], 0, 1
+	        ];
+	      break;
+
+	      case 'matrix3d':
+	        matrix = value.split(',').map(parseFloat);
+	      break;
+
+	      case 'translate':
+	      case 'translate3d':
+	        matrix = createMatrix();
+	        value = value.split(',').map(parseFloat);
+
+	        if(value.length === 2) {
+	          value.push(0);
+	        }
+
+	        mat4Translate(matrix, matrix, value);
+	      break;
+
+	      case 'translateX':
+	        matrix = createMatrix();
+	        value = [ parseFloat(value), 0, 0 ];
+	        mat4Translate(matrix, matrix, value);
+	      break;
+
+	      case 'translateY':
+	        matrix = createMatrix();
+	        value = [ 0, parseFloat(value), 0 ];
+	        mat4Translate(matrix, matrix, value);
+	      break;
+
+	      case 'translateZ':
+	        matrix = createMatrix();
+	        value = [ 0, 0, parseFloat(value) ];
+	        mat4Translate(matrix, matrix, value);
+	      break;
+
+	      case 'rotate':
+	      case 'rotateZ':
+	        matrix = createMatrix();
+	        value = getRadian(value);
+	        mat4RotateZ(matrix, matrix, value);
+	      break;
+
+	      case 'scale':
+	      case 'scale3d':
+	        matrix = createMatrix();
+	        value = value.split(',').map(parseFloat);
+
+	        if(value.length === 2) {
+	          value.push(1);  
+	        }
+	        
+	        mat4Scale(matrix, matrix, value);
+	      break;
+
+	      case 'scaleX':
+	        matrix = createMatrix();
+	        mat4Scale(matrix, matrix, [parseFloat(value), 1, 1]);
+	      break;
+
+	      case 'scaleY':
+	        matrix = createMatrix();
+	        mat4Scale(matrix, matrix, [1, parseFloat(value), 1]);
+	      break;
+
+	      case 'scaleZ':
+	        matrix = createMatrix();
+	        mat4Scale(matrix, matrix, [1, 1, parseFloat(value)]);
+	      break;
+
+	      case 'rotateX':
+	        matrix = createMatrix();
+	        value = getRadian(value);
+	        mat4RotateX(matrix, matrix, value);
+	      break;
+
+	      case 'rotateY':
+	        matrix = createMatrix();
+	        value = getRadian(value);
+	        mat4RotateY(matrix, matrix, value);
+	      break;
+
+	      case 'rotate3d':
+	        matrix = createMatrix();
+	        value = value.split(',');
+	        mat4Rotate(matrix, matrix, getRadian(value[3]), value.slice(0, 3).map(parseFloat));
+	      break;
+
+	      case 'perspective':
+	        // The matrix is computed by starting with an identity matrix and replacing the value at row 3, 
+	        // column 4 with the value -1/depth. The value for depth must be greater than zero, otherwise 
+	        // the function is invalid.
+	        value = parseFloat(value);
+
+	        matrix = [
+	          1, 0, 0, 0,
+	          0, 1, 0, 0,
+	          0, 0, 1, -1 / value,
+	          0, 0, 0, 1
+	        ];
+	      break;
+
+	      case 'skew':
+	        matrix = createMatrix();
+	        value = value.split(',').map(getRadian);
+	        matrix = [
+	          1,                    Math.tan(value[ 0 ]), 0, 0,
+	          Math.tan(value[ 1 ]), 1,                    0, 0,
+	          0,                    0,                    1, 0,
+	          0,                    0,                    0, 1
+	        ];
+	      break;
+
+	      case 'skewX':
+	        matrix = createMatrix();
+	        value = getRadian(value);
+	        matrix = [
+	          1,               0, 0, 0,
+	          Math.tan(value), 1, 0, 0,
+	          0,               0, 1, 0,
+	          0,               0, 0, 1
+	        ];
+	      break;
+
+	      case 'skewY':
+	        matrix = createMatrix();
+	        value = getRadian(value);
+	        matrix = [
+	          1, Math.tan(value), 0, 0,
+	          0, 1,               0, 0,
+	          0, 0,               1, 0,
+	          0, 0,               0, 1
+	        ];
+	      break;
+
+	      case 'none':
+	      case 'initial':
+	      break;
+
+	      default:
+	        throw new Error('unsupported transform function: ' + name);
+	      break;
+	    };
+
+	    if(matrix) {
+	      mat4Multiply(outMatrix, outMatrix, matrix);
+	    }
+	  });
+
+	  return outMatrix;
+	};
+
+	function getRadian(value) {
+	  if(value.indexOf("deg") != -1) {
+	    return parseFloat(value,10) * (Math.PI * 2 / 360);
+	  } else if (value.indexOf("grad") != -1) {
+	    return parseFloat(value,10) * (Math.PI/200);
+	  } else {
+	    return parseFloat(value,10);
+	  }
+	}
+
+	function createMatrix() {
+	  return [
+	    1, 0, 0, 0,
+	    0, 1, 0, 0,
+	    0, 0, 1, 0,
+	    0, 0, 0, 1
+	  ];
+	}
+
+
+
+	// computeMatrix: function(ruleValue) {
+	  
+	//     //Split the webkit functions and loop through them
+	//     var functions = ruleValue.match(/[A-z]+\([^\)]+/g) || [];
+	//     var matrices = [];
+	    
+	//     for (var k=0; k < functions.length; k++) {
+	    
+	//       //Prepare the function name and its value
+	//       var func = functions[k].split('(')[0],
+	//         value = functions[k].split('(')[1];
+	    
+	//       //Now we rotate through the functions and add it to our matrix
+	//       switch(func) {
+	//         case 'matrix': //Attention: Matrix in IE doesn't support e,f = tx,ty = translation
+	//           var values = value.split(',');
+	//           matrices.push($M([
+	//             [values[0], values[2],  0],
+	//             [values[1], values[3],  0],
+	//             [0,         0,  1]
+	//           ]));
+	//           break;
+	//         case 'rotate':
+	//           var a = Transformie.toRadian(value);
+	//           matrices.push($M([
+	//             [Math.cos(a), -Math.sin(a), 0],
+	//             [Math.sin(a), Math.cos(a),  0],
+	//             [0,       0,        1]
+	//           ]));
+	//           break;
+	//         case 'scale':
+	//           matrices.push($M([
+	//             [value, 0,    0],
+	//             [0,   value,  0],
+	//             [0,   0,    1]
+	//           ]));
+	//           break;
+	//         case 'scaleX':
+	//           matrices.push($M([
+	//             [value, 0,    0],
+	//             [0,   1,    0],
+	//             [0,   0,    1]
+	//           ]));
+	//           break;
+	//         case 'scaleY':
+	//           matrices.push($M([
+	//             [1,   0,    0],
+	//             [0,   value,  0],
+	//             [0,   0,    1]
+	//           ]));
+	//           break;
+	//         case 'skew':
+	//           var a = Transformie.toRadian(value);
+	//           matrices.push($M([
+	//             [1,       0,  0],
+	//             [Math.tan(a), 1,  0],
+	//             [0,       0,  1]
+	//           ]));
+	//         case 'skewX':
+	//           var a = Transformie.toRadian(value);
+	//           matrices.push($M([
+	//             [1,   Math.tan(a),0],
+	//             [0,   1,      0],
+	//             [0,   0,      1]
+	//           ]));
+	//           break;
+	//         case 'skewY':
+	//           var a = Transformie.toRadian(value);
+	//           matrices.push($M([
+	//             [1,       0,  0],
+	//             [Math.tan(a), 1,  0],
+	//             [0,       0,  1]
+	//           ]));
+	//           break;
+	//       };
+	      
+	//     };
+	    
+	//     if(!matrices.length)
+	//       return;
+	    
+	//     //Calculate the resulting matrix
+	//     var matrix = matrices[0];
+	//     for (var k=0; k < matrices.length; k++) {
+	//       if(matrices[k+1]) matrix = matrix.x(matrices[k+1]);
+	//     };
+
+	//     return matrix;
+	    
+	//   }
+	});
+
+	var css2matrix = (index$16 && typeof index$16 === 'object' && 'default' in index$16 ? index$16['default'] : index$16);
+
+	var Engines = {
+	    'webgl': WebGLEngine,
+	    'canvas': Canvas2DEngine,
+	    'css': CSS3DEngine
+	};
+
 	var Render = function () {
-	    function Render(element, engine) {
+	    function Render(element, some) {
 	        classCallCheck(this, Render);
 
-	        var elRect = element.getBoundingClientRect();
-	        this.viewportWidth = elRect.width;
-	        this.viewportHeight = elRect.height;
+	        var engine = void 0;
+	        if (typeof some === 'string' && Engines[some]) {
+	            engine = new Engines[some]();
+	        } else if (some instanceof Engine) {
+	            engine = some;
+	        }
+
+	        if (engine == null) {
+	            throw new Error('invalid engine "' + some + '"');
+	        }
+
+	        var _element$getBoundingC = element.getBoundingClientRect();
+
+	        var width = _element$getBoundingC.width;
+	        var height = _element$getBoundingC.height;
+
+	        this.viewportWidth = width;
+	        this.viewportHeight = height;
 	        this.engine = engine;
 
 	        engine.attachElement(element);
@@ -7446,23 +8007,208 @@ b"+i+"*=d\
 	            this.engine.draw(el);
 	        }
 	    }, {
-	        key: 'drawRect',
-	        value: function drawRect(options) {
-	            var rect = new Rect(options);
-	            this.draw(rect);
-	            return rect;
+	        key: 'transform',
+	        value: function transform(el) {
+	            for (var _len = arguments.length, styles = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+	                styles[_key - 1] = arguments[_key];
+	            }
+
+	            var matrix = css2matrix(styles.join(' '));
+	            el.transform(matrix);
 	        }
 	    }]);
 	    return Render;
 	}();
 
+	var slerp = createCommonjsModule(function (module) {
+	module.exports = slerp
+
+	/**
+	 * Performs a spherical linear interpolation between two quat
+	 *
+	 * @param {quat} out the receiving quaternion
+	 * @param {quat} a the first operand
+	 * @param {quat} b the second operand
+	 * @param {Number} t interpolation amount between the two inputs
+	 * @returns {quat} out
+	 */
+	function slerp (out, a, b, t) {
+	  // benchmarks:
+	  //    http://jsperf.com/quaternion-slerp-implementations
+
+	  var ax = a[0], ay = a[1], az = a[2], aw = a[3],
+	    bx = b[0], by = b[1], bz = b[2], bw = b[3]
+
+	  var omega, cosom, sinom, scale0, scale1
+
+	  // calc cosine
+	  cosom = ax * bx + ay * by + az * bz + aw * bw
+	  // adjust signs (if necessary)
+	  if (cosom < 0.0) {
+	    cosom = -cosom
+	    bx = -bx
+	    by = -by
+	    bz = -bz
+	    bw = -bw
+	  }
+	  // calculate coefficients
+	  if ((1.0 - cosom) > 0.000001) {
+	    // standard case (slerp)
+	    omega = Math.acos(cosom)
+	    sinom = Math.sin(omega)
+	    scale0 = Math.sin((1.0 - t) * omega) / sinom
+	    scale1 = Math.sin(t * omega) / sinom
+	  } else {
+	    // "from" and "to" quaternions are very close
+	    //  ... so we can do a linear interpolation
+	    scale0 = 1.0 - t
+	    scale1 = t
+	  }
+	  // calculate final values
+	  out[0] = scale0 * ax + scale1 * bx
+	  out[1] = scale0 * ay + scale1 * by
+	  out[2] = scale0 * az + scale1 * bz
+	  out[3] = scale0 * aw + scale1 * bw
+
+	  return out
+	}
+	});
+
+	var require$$0$29 = (slerp && typeof slerp === 'object' && 'default' in slerp ? slerp['default'] : slerp);
+
+	var index$19 = createCommonjsModule(function (module) {
+	module.exports = require$$0$29
+	});
+
+	var require$$0$28 = (index$19 && typeof index$19 === 'object' && 'default' in index$19 ? index$19['default'] : index$19);
+
+	var index$20 = createCommonjsModule(function (module) {
+	/*
+	Input:  translation ; a 3 component vector
+	        scale       ; a 3 component vector
+	        skew        ; skew factors XY,XZ,YZ represented as a 3 component vector
+	        perspective ; a 4 component vector
+	        quaternion  ; a 4 component vector
+	Output: matrix      ; a 4x4 matrix
+
+	From: http://www.w3.org/TR/css3-transforms/#recomposing-to-a-3d-matrix
+	*/
+
+	var mat4 = {
+	    identity: require$$5,
+	    translate: require$$4$2,
+	    multiply: require$$3$2,
+	    create: require$$2$1,
+	    scale: require$$1$1,
+	    fromRotationTranslation: require$$0$2
+	}
+
+	var rotationMatrix = mat4.create()
+	var temp = mat4.create()
+
+	module.exports = function recomposeMat4(matrix, translation, scale, skew, perspective, quaternion) {
+	    mat4.identity(matrix)
+
+	    //apply translation & rotation
+	    mat4.fromRotationTranslation(matrix, quaternion, translation)
+
+	    //apply perspective
+	    matrix[3] = perspective[0]
+	    matrix[7] = perspective[1]
+	    matrix[11] = perspective[2]
+	    matrix[15] = perspective[3]
+	        
+	    // apply skew
+	    // temp is a identity 4x4 matrix initially
+	    mat4.identity(temp)
+
+	    if (skew[2] !== 0) {
+	        temp[9] = skew[2]
+	        mat4.multiply(matrix, matrix, temp)
+	    }
+
+	    if (skew[1] !== 0) {
+	        temp[9] = 0
+	        temp[8] = skew[1]
+	        mat4.multiply(matrix, matrix, temp)
+	    }
+
+	    if (skew[0] !== 0) {
+	        temp[8] = 0
+	        temp[4] = skew[0]
+	        mat4.multiply(matrix, matrix, temp)
+	    }
+
+	    //apply scale
+	    mat4.scale(matrix, matrix, scale)
+	    return matrix
+	}
+	});
+
+	var require$$3$6 = (index$20 && typeof index$20 === 'object' && 'default' in index$20 ? index$20['default'] : index$20);
+
+	var index$17 = createCommonjsModule(function (module) {
+	var lerp = require$$4$6
+
+	var recompose = require$$3$6
+	var decompose = require$$2$2
+	var determinant = require$$1$2
+	var slerp = require$$0$28
+
+	var state0 = state()
+	var state1 = state()
+	var tmp = state()
+
+	module.exports = interpolate
+	function interpolate(out, start, end, alpha) {
+	    if (determinant(start) === 0 || determinant(end) === 0)
+	        return false
+
+	    //decompose the start and end matrices into individual components
+	    var r0 = decompose(start, state0.translate, state0.scale, state0.skew, state0.perspective, state0.quaternion)
+	    var r1 = decompose(end, state1.translate, state1.scale, state1.skew, state1.perspective, state1.quaternion)
+	    if (!r0 || !r1)
+	        return false    
+
+
+	    //now lerp/slerp the start and end components into a temporary     lerp(tmptranslate, state0.translate, state1.translate, alpha)
+	    lerp(tmp.translate, state0.translate, state1.translate, alpha)
+	    lerp(tmp.skew, state0.skew, state1.skew, alpha)
+	    lerp(tmp.scale, state0.scale, state1.scale, alpha)
+	    lerp(tmp.perspective, state0.perspective, state1.perspective, alpha)
+	    slerp(tmp.quaternion, state0.quaternion, state1.quaternion, alpha)
+
+	    //and recompose into our 'out' matrix
+	    recompose(out, tmp.translate, tmp.scale, tmp.skew, tmp.perspective, tmp.quaternion)
+	    return true
+	}
+
+	function state() {
+	    return {
+	        translate: vec3(),
+	        scale: vec3(1),
+	        skew: vec3(),
+	        perspective: vec4(),
+	        quaternion: vec4()
+	    }
+	}
+
+	function vec3(n) {
+	    return [n||0,n||0,n||0]
+	}
+
+	function vec4() {
+	    return [0,0,0,1]
+	}
+	});
+
 	var webglEl = document.getElementById('webgl');
 	var canvas2dEl = document.getElementById('canvas2d');
 	var css3dEl = document.getElementById('css3d');
 
-	var renders = [new Render(webglEl, new WebGLEngine()), new Render(canvas2dEl, new Canvas2DEngine()), new Render(css3dEl, new CSS3DEngine())];
+	var renders = [new Render(webglEl, 'webgl'), new Render(canvas2dEl, 'canvas'), new Render(css3dEl, 'css')];
 
-	var translateX = 80;
+	var translateX = 100;
 	var rotateZ = 0;
 	var lastTime = Date.now();
 	function tick() {
@@ -7476,29 +8222,24 @@ b"+i+"*=d\
 	function animation(elapsed) {
 	    rotateZ += 90 * elapsed / 1000;
 
-	    var matrix = mat4.create();
-	    mat4.identity(matrix, matrix);
-	    mat4.rotateZ(matrix, matrix, deg2rad(rotateZ));
-	    mat4.translate(matrix, matrix, [translateX, 0, 0]);
-
 	    renders.forEach(function (render) {
 	        var rect = render.rect;
-
-	        render.rect.transform(matrix);
-	        render.draw(render.rect);
+	        render.transform(rect, 'rotateZ(-' + rotateZ + 'deg)', 'translateX(' + translateX + 'px)');
+	        render.draw(rect);
 	    });
 	}
 
 	renders.forEach(function (render) {
 	    render.clearColor('#000F');
 
-	    var rect = render.drawRect({
+	    var rect = new Rect({
 	        width: 50,
 	        height: 50,
 	        position: [-25, 25, 0],
 	        color: '#FFFF'
 	    });
 	    render.rect = rect;
+	    render.draw(rect);
 	});
 
 	tick();

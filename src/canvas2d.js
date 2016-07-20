@@ -4,6 +4,7 @@ import {
 } from './util'
 import Engine from './engine';
 import vec3 from 'gl-vec3';
+import mat4 from 'gl-mat4';
 
 export default class Canvas2DEngine extends Engine {
     constructor() {
@@ -35,7 +36,8 @@ export default class Canvas2DEngine extends Engine {
         this.context.beginPath();
         el.points.forEach((point, i) => {
             let [x, y, z] = vec3.transformMat4([], point, transformMatrix);
-            [x, y, z] = translateAxis([x, y, z], this.viewportWidth, this.viewportHeight);
+            // invert Y axis against css transform matrix
+            [x, y, z] = translateAxis([x, -y, z], this.viewportWidth, this.viewportHeight);
             if (i === 0) {
                 this.context.moveTo(x, y);
             } else {
