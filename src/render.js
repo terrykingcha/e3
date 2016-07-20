@@ -8,7 +8,6 @@ import Canvas2DEngine from './canvas2d';
 import CSS3DEngine from './css3d';
 import Rect from './rect';
 import mat4 from 'gl-mat4';
-import css2matrix from 'css-transform-to-mat4';
 
 const Engines = {
     'webgl': WebGLEngine,
@@ -48,11 +47,6 @@ export default class Render {
 
     draw(el) {
         this.engine.draw(el);
-    }
-
-    transform(el, ...styles) {
-        const matrix = css2matrix(styles.join(' '));
-        el.transform(matrix);
     }
 }
 

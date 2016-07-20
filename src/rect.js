@@ -6,6 +6,7 @@ import Element from './element';
 import mat4 from 'gl-mat4';
 import vec3 from 'gl-vec3';
 import unproject from 'camera-unproject';
+import css2matrix from 'css-transform-to-mat4';
 
 export default class Rect extends Element {
     constructor(options) {
@@ -30,8 +31,8 @@ export default class Rect extends Element {
         this.length = 4;
     }
 
-    transform(matrix) {
-        mat4.copy(this.transformMatrix, matrix);
+    transform(...styles) {
+        this.transformMatrix = css2matrix(styles.join(' '));
     }
 
     getVertices(projView, modelView, width, height) {
