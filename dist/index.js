@@ -7481,6 +7481,81 @@ b"+i+"*=d\
 	    return CSS3DEngine;
 	}(Engine);
 
+	var SVGEngine = function (_Engine) {
+	    inherits(SVGEngine, _Engine);
+
+	    function SVGEngine() {
+	        classCallCheck(this, SVGEngine);
+	        return possibleConstructorReturn(this, Object.getPrototypeOf(SVGEngine).call(this));
+	    }
+
+	    createClass(SVGEngine, [{
+	        key: 'setSize',
+	        value: function setSize(width, height) {
+	            get(Object.getPrototypeOf(SVGEngine.prototype), 'setSize', this).call(this, width, height);
+	            this.el.setAttribute('width', width + 'px');
+	            this.el.setAttribute('height', height + 'px');
+	            this.el.setAttribute('viewBox', '0 0 ' + width + ' ' + height);
+	        }
+	    }, {
+	        key: 'setClearColor',
+	        value: function setClearColor(color) {
+	            this.el.style.backgroundColor = glColor2rgba(color);
+	        }
+	    }, {
+	        key: 'draw',
+	        value: function draw(el) {
+	            var _this2 = this;
+
+	            var pathElement = void 0;
+	            if (!el.pathElement) {
+	                pathElement = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+	                el.pathElement = pathElement;
+	            } else {
+	                pathElement = el.pathElement;
+	            }
+
+	            var transformMatrix = el.transformMatrix;
+	            var color = el.options.color;
+
+
+	            var d = [];
+
+	            el.points.forEach(function (point, i) {
+	                var _vec3$transformMat = vec3.transformMat4([], point, transformMatrix);
+
+	                var _vec3$transformMat2 = slicedToArray(_vec3$transformMat, 3);
+
+	                var x = _vec3$transformMat2[0];
+	                var y = _vec3$transformMat2[1];
+	                var z = _vec3$transformMat2[2];
+	                // invert Y axis against css transform matrix
+
+	                var _translateAxis = translateAxis([x, -y, z], _this2.viewportWidth, _this2.viewportHeight);
+
+	                var _translateAxis2 = slicedToArray(_translateAxis, 3);
+
+	                x = _translateAxis2[0];
+	                y = _translateAxis2[1];
+	                z = _translateAxis2[2];
+
+	                if (i === 0) {
+	                    d.push('M ' + x + ' ' + y);
+	                } else {
+	                    d.push('L ' + x + ' ' + y);
+	                }
+	            });
+	            pathElement.setAttribute('d', d.join(' '));
+	            pathElement.setAttribute('fill', glColor2rgba(color));
+
+	            if (pathElement.parentNode == null) {
+	                this.el.appendChild(pathElement);
+	            }
+	        }
+	    }]);
+	    return SVGEngine;
+	}(Engine);
+
 	var Element = function Element(options) {
 	    classCallCheck(this, Element);
 	};
@@ -7964,7 +8039,8 @@ b"+i+"*=d\
 	var Engines = {
 	    'webgl': WebGLEngine,
 	    'canvas': Canvas2DEngine,
-	    'css': CSS3DEngine
+	    'css': CSS3DEngine,
+	    'svg': SVGEngine
 	};
 
 	var Render = function () {
@@ -8015,8 +8091,9 @@ b"+i+"*=d\
 	var webglEl = document.getElementById('webgl');
 	var canvas2dEl = document.getElementById('canvas2d');
 	var css3dEl = document.getElementById('css3d');
+	var svgEl = document.getElementById('svg');
 
-	var renders = [new Render(webglEl, 'webgl'), new Render(canvas2dEl, 'canvas'), new Render(css3dEl, 'css')];
+	var renders = [new Render(webglEl, 'webgl'), new Render(canvas2dEl, 'canvas'), new Render(css3dEl, 'css'), new Render(svgEl, 'svg')];
 
 	renders.forEach(function (render) {
 	    render.clearColor('#000F');

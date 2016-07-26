@@ -4,11 +4,14 @@ import Rect from './rect';
 const webglEl = document.getElementById('webgl');
 const canvas2dEl = document.getElementById('canvas2d');
 const css3dEl = document.getElementById('css3d');
+const svgEl = document.getElementById('svg');
+
 
 const renders = [
     new Render(webglEl, 'webgl'),
     new Render(canvas2dEl, 'canvas'),
-    new Render(css3dEl, 'css')
+    new Render(css3dEl, 'css'),
+    new Render(svgEl, 'svg')
 ];
 
 renders.forEach(render => {

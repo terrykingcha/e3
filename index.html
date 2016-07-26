@@ -17,8 +17,15 @@ body {
     flex-direction: column;
 }
 
-.panel {
+.row {
     width: 100%;
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+}
+
+.panel {
+    height: 100%;
     flex: 1;
     overflow: hidden;
     margin: 0;
@@ -51,17 +58,25 @@ body {
 </style>
 </head>
 <body>
-<div class="panel">
-    <div class="label">WebGL</div>
-    <canvas class="canvas" id="webgl"></canvas>
+<div class="row">
+    <div class="panel">
+        <div class="label">WebGL</div>
+        <canvas class="canvas" id="webgl"></canvas>
+    </div>
+    <div class="panel">
+        <div class="label">canvas2d</div>
+        <canvas class="canvas" id="canvas2d"></canvas>
+    </div>
 </div>
-<div class="panel">
-    <div class="label">canvas2d</div>
-    <canvas class="canvas" id="canvas2d"></canvas>
-</div>
-<div class="panel">
-    <div class="label">css3d</div>
-    <div class="canvas"  id="css3d"></div>
+<div class="row">
+    <div class="panel">
+        <div class="label">css3d</div>
+        <div class="canvas" id="css3d"></div>
+    </div>
+    <div class="panel">
+        <div class="label">svg</div>
+        <svg class="canvas" id="svg" version="1.1" xmlns="http://www.w3.org/2000/svg"></svg>
+    </div>
 </div>
 <script src="dist/index.js"></script>
 </body>
